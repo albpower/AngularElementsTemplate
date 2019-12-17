@@ -4,11 +4,13 @@ import { createCustomElement } from '@angular/elements';
 
 import { AppComponent } from './app.component';
 import { AFilePreviewerComponent } from './a-file-previewer/a-file-previewer.component';
+import { SafePipe } from './safe.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AFilePreviewerComponent
+    AFilePreviewerComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule
@@ -17,17 +19,17 @@ import { AFilePreviewerComponent } from './a-file-previewer/a-file-previewer.com
     AppComponent,
     AFilePreviewerComponent
   ],
-  providers: [],
+  providers: [
+    SafePipe
+  ],
   bootstrap: []
 })
 export class AppModule {
 
-  constructor(private injector: Injector) { }
-
-  ngDoBootstrap() {
-
+  constructor(private injector: Injector) {
     const element = createCustomElement(AFilePreviewerComponent, { injector: this.injector });
-    customElements.define("a-file-previewer", element);
-
+    customElements.define('a-file-previewer', element);
   }
+
+  ngDoBootstrap() { }
 }
